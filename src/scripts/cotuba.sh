@@ -1,3 +1,3 @@
 #!/bin/bash
-java -cp "libs/*" cotuba.Main "$@"
+java -cp "libs/*" cli.Main "$@"
 

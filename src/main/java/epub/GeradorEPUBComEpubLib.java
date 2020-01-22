@@ -1,15 +1,22 @@
-package cotuba;
+package epub;
 
 import java.io.IOException;
 import java.nio.file.Files;
 
+import application.GeradorEPUB;
+import domain.Capitulo;
+import domain.Ebook;
 import nl.siegmann.epublib.domain.Book;
 import nl.siegmann.epublib.domain.Resource;
 import nl.siegmann.epublib.epub.EpubWriter;
 import nl.siegmann.epublib.service.MediatypeService;
 
-public class GeradorEPUB {
+public class GeradorEPUBComEpubLib implements GeradorEPUB {
 
+	/* (non-Javadoc)
+	 * @see epub.GeradorEPUB#gera(domain.Ebook)
+	 */
+	@Override
 	public void gera(Ebook ebook) {
 		
 		Book epub = new Book();

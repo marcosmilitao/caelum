@@ -1,4 +1,4 @@
-package cotuba;
+package cli;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,8 +12,14 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-class LeitorOpcoesCLI {
+import application.ParametrosCotuba;
+
+public class LeitorOpcoesCLI implements ParametrosCotuba {
 	
+	/* (non-Javadoc)
+	 * @see cli.ParametrosCotuba#getDiretorioDosMD()
+	 */
+	@Override
 	public Path getDiretorioDosMD() {
 		return diretorioDosMD;
 	}
@@ -22,6 +28,10 @@ class LeitorOpcoesCLI {
 		this.diretorioDosMD = diretorioDosMD;
 	}
 
+	/* (non-Javadoc)
+	 * @see cli.ParametrosCotuba#getFormato()
+	 */
+	@Override
 	public String getFormato() {
 		return formato;
 	}
@@ -30,6 +40,10 @@ class LeitorOpcoesCLI {
 		this.formato = formato;
 	}
 
+	/* (non-Javadoc)
+	 * @see cli.ParametrosCotuba#getArquivoDeSaida()
+	 */
+	@Override
 	public Path getArquivoDeSaida() {
 		return arquivoDeSaida;
 	}

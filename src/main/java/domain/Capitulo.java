@@ -1,4 +1,4 @@
-package cotuba;
+package domain;
 
 public class Capitulo {
 	
