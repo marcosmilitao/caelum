@@ -3,7 +3,7 @@ package epub;
 import java.io.IOException;
 import java.nio.file.Files;
 
-import application.GeradorEPUB;
+import application.GeradorEbook;
 import domain.Capitulo;
 import domain.Ebook;
 import nl.siegmann.epublib.domain.Book;
@@ -11,7 +11,7 @@ import nl.siegmann.epublib.domain.Resource;
 import nl.siegmann.epublib.epub.EpubWriter;
 import nl.siegmann.epublib.service.MediatypeService;
 
-public class GeradorEPUBComEpubLib implements GeradorEPUB {
+public class GeradorEPUB implements GeradorEbook {
 
 	/* (non-Javadoc)
 	 * @see epub.GeradorEPUB#gera(domain.Ebook)

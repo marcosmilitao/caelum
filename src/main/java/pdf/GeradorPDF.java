@@ -13,11 +13,11 @@ import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.property.AreaBreakType;
 
-import application.GeradorPDF;
+import application.GeradorEbook;
 import domain.Capitulo;
 import domain.Ebook;
 
-public class GeradorPDFComIText implements GeradorPDF {
+public class GeradorPDF implements GeradorEbook {
 
 	/* (non-Javadoc)
 	 * @see pdf.GeradorPDF#gera(domain.Ebook)
