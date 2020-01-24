@@ -18,6 +18,7 @@ import org.commonmark.renderer.html.HtmlRenderer;
 
 import application.RenderizadorMDParaHTML;
 import domain.Capitulo;
+import tema.AplicadorTema;
 
 public class RenderizadorMDParaHTMLComCommonMark implements RenderizadorMDParaHTML {
 
@@ -67,6 +68,9 @@ public class RenderizadorMDParaHTMLComCommonMark implements RenderizadorMDParaHT
 						String html = renderer.render(document);
 						
 						capitulo.setConteudoHTML(html);
+						
+						AplicadorTema tema = new AplicadorTema();
+						tema.aplica(capitulo);
 						
 						capitulos.add(capitulo);
 
