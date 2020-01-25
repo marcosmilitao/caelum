@@ -1,9 +1,12 @@
 package tema;
 
+import java.util.List;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import domain.Capitulo;
+import plugin.Plugin;
 
 public class AplicadorTema {
 	
@@ -11,8 +14,10 @@ public class AplicadorTema {
 		String html = capitulo.getConteudoHTML();
 		Document document = Jsoup.parse(html);
 		
-		String css = "h1 {border-bottom: 1px dashed black; }";
-		document.select("head").append("<style> " + css + " </style>");
+		List<String> listaDeTemas = Plugin.listaTemas();
+		for(String css : listaDeTemas) {
+			document.select("head").append("<style> " + css + " </style>");		
+		}
 		capitulo.setConteudoHTML(document.html());
 	}
 
