@@ -3,7 +3,7 @@ package domain;
 import java.nio.file.Path;
 import java.util.List;
 
-public class Ebook {
+public class Ebook implements plugin.Ebook{
 	
 	private FormatoEbook formato;
 	private Path arquivoDeSaida;
