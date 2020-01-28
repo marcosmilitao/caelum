@@ -6,8 +6,8 @@ import java.util.Map;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import plugin.Capitulo;
-import plugin.Ebook;
+import domain.Capitulo;
+import domain.Ebook;
 import plugin.AoFinalizarGeracao;
 
 public class CalculadorEstatisticas implements AoFinalizarGeracao {
