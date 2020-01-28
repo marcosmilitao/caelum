@@ -2,7 +2,7 @@ package plugin;
 
 import java.util.ServiceLoader;
 
-import plugin.Ebook;
+import domain.Ebook;
 
 public interface AoFinalizarGeracao {
 	void aposGeracao(Ebook ebook);

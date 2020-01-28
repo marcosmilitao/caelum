@@ -1,6 +1,6 @@
 package domain;
 
-public class Capitulo implements plugin.Capitulo{
+public class Capitulo{
 	
 	private String titulo;
 	private String conteudoHTML;
