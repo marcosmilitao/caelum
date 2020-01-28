@@ -1,28 +1,21 @@
 package br.com.cognitio.estatisticas;
 
 import java.text.Normalizer;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import domain.Capitulo;
-import domain.Ebook;
-import plugin.Plugin;
+import plugin.Capitulo;
+import plugin.Ebook;
+import plugin.AoFinalizarGeracao;
 
-public class CalculadorEstatisticas implements Plugin {
-
-	@Override
-	public String cssDoTema() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public class CalculadorEstatisticas implements AoFinalizarGeracao {
 
 	@Override
 	public void aposGeracao(Ebook ebook) {
 		
-		Map<String,Integer> contagemPalavras = new HashMap<>();
+		ContagemPalavras contagemPalavras = new ContagemPalavras();
 		
 		for(Capitulo capitulo : ebook.getCapitulos()) {
 			
@@ -42,7 +35,7 @@ public class CalculadorEstatisticas implements Plugin {
 			for(String palavra : palavras) {
 				String emMaiusculas = palavra.toUpperCase();
 				
-				contagemPalavras.put(emMaiusculas, 1);		
+				contagemPalavras.adicionaPalavras(emMaiusculas);		
 				
 			}
 			
