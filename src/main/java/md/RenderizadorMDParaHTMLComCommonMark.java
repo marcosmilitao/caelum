@@ -18,6 +18,7 @@ import org.commonmark.renderer.html.HtmlRenderer;
 
 import application.RenderizadorMDParaHTML;
 import domain.Capitulo;
+import domain.builder.CapituloBuilder;
 import tema.AplicadorTema;
 
 public class RenderizadorMDParaHTMLComCommonMark implements RenderizadorMDParaHTML {
@@ -36,7 +37,7 @@ public class RenderizadorMDParaHTMLComCommonMark implements RenderizadorMDParaHT
 				.filter(matcher::matches)
 				.sorted()
 				.forEach(arquivoMD -> {
-					Capitulo capitulo = new Capitulo();
+					CapituloBuilder capituloBuilder = new CapituloBuilder();
 					
 					Parser parser = Parser.builder().build();
 					Node document = null;
@@ -48,7 +49,8 @@ public class RenderizadorMDParaHTMLComCommonMark implements RenderizadorMDParaHT
 								if (heading.getLevel() == 1) {
 									// capítulo
 									String tituloDoCapitulo = ((Text) heading.getFirstChild()).getLiteral();									
-									capitulo.setTitulo(tituloDoCapitulo);
+									//capitulo.setTitulo(tituloDoCapitulo);
+									capituloBuilder.comTitulo(tituloDoCapitulo);
 									// TODO: usar título do capítulo
 									
 								} else if (heading.getLevel() == 2) {
@@ -67,15 +69,19 @@ public class RenderizadorMDParaHTMLComCommonMark implements RenderizadorMDParaHT
 						HtmlRenderer renderer = HtmlRenderer.builder().build();
 						String html = renderer.render(document);
 						
-						capitulo.setConteudoHTML(html);
+						//capitulo.setConteudoHTML(html);
+						
 						
 						AplicadorTema tema = new AplicadorTema();
-						tema.aplica(capitulo);
+						// tema.aplica(capitulo);
+						String htmlComTemas = tema.aplica(html);
+						
+						capituloBuilder.comConteudoHTML(html);
+						
+						Capitulo capitulo = capituloBuilder.constroi();
 						
 						capitulos.add(capitulo);
 
-						// TODO: usar título do capítulo
-//						epub.addSection("Capítulo", new Resource(html.getBytes(), MediatypeService.XHTML));
 
 					} catch (Exception ex) {
 						throw new RuntimeException("Erro ao renderizar para HTML o arquivo " + arquivoMD, ex);

@@ -1,21 +1,19 @@
 package domain;
 
-public class Capitulo{
+public final class Capitulo{
 	
-	private String titulo;
-	private String conteudoHTML;
+	private final String titulo;
+	public Capitulo(String titulo, String conteudoHTML) {
+		this.titulo = titulo;
+		this.conteudoHTML = conteudoHTML;
+	}
+	private final String conteudoHTML;
 	
 	public String getTitulo() {
 		return titulo;
 	}
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
 	public String getConteudoHTML() {
 		return conteudoHTML;
-	}
-	public void setConteudoHTML(String conteudoHTML) {
-		this.conteudoHTML = conteudoHTML;
 	}
 
 }
