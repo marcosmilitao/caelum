@@ -8,6 +8,7 @@ import domain.Capitulo;
 import domain.Ebook;
 import domain.FormatoEbook;
 import plugin.AoFinalizarGeracao;
+import plugin.GeradorEbook;
 
 public class Cotuba {
 	public void executa(ParametrosCotuba parametros,  Consumer<String> acaoPosGeracao) {

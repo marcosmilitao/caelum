@@ -13,9 +13,10 @@ import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.property.AreaBreakType;
 
-import application.GeradorEbook;
 import domain.Capitulo;
 import domain.Ebook;
+import domain.FormatoEbook;
+import plugin.GeradorEbook;
 
 public class GeradorPDF implements GeradorEbook {
 
@@ -51,6 +52,12 @@ public class GeradorPDF implements GeradorEbook {
 			}
 
 		
+	}
+
+	@Override
+	public FormatoEbook formato() {
+		
+		return FormatoEbook.PDF;
 	}
 
 }

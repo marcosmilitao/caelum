@@ -3,13 +3,14 @@ package epub;
 import java.io.IOException;
 import java.nio.file.Files;
 
-import application.GeradorEbook;
 import domain.Capitulo;
 import domain.Ebook;
+import domain.FormatoEbook;
 import nl.siegmann.epublib.domain.Book;
 import nl.siegmann.epublib.domain.Resource;
 import nl.siegmann.epublib.epub.EpubWriter;
 import nl.siegmann.epublib.service.MediatypeService;
+import plugin.GeradorEbook;
 
 public class GeradorEPUB implements GeradorEbook {
 
@@ -37,6 +38,12 @@ public class GeradorEPUB implements GeradorEbook {
 		} catch (IOException ex) {
 			throw new RuntimeException("Erro ao criar arquivo EPUB: " + ebook.getArquivoDeSaida().toAbsolutePath(), ex);
 		}
+	}
+
+	@Override
+	public FormatoEbook formato() {
+		// TODO Auto-generated method stub
+		return FormatoEbook.EPUB;
 	}
 
 }
