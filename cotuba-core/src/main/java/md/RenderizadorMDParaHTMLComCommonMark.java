@@ -1,13 +1,7 @@
 package md;
 
-import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.PathMatcher;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.commonmark.node.AbstractVisitor;
 import org.commonmark.node.Heading;
@@ -17,6 +11,7 @@ import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 
 import application.RenderizadorMDParaHTML;
+import application.RepositorioDeMDs;
 import domain.Capitulo;
 import domain.builder.CapituloBuilder;
 import tema.AplicadorTema;
@@ -27,22 +22,17 @@ public class RenderizadorMDParaHTMLComCommonMark implements RenderizadorMDParaHT
 	 * @see md.RenderizadorMDParaHTML#renderiza(java.nio.file.Path)
 	 */
 	@Override
-	public List<Capitulo> renderiza(Path diretorioDosMD) {
+	public List<Capitulo> renderiza(RepositorioDeMDs repositorioDeMDs) {
 		
 		List<Capitulo> capitulos = new ArrayList<>();
-		
-		PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:**/*.md");
-		try (Stream<Path> arquivosMD = Files.list(diretorioDosMD)) {
-			arquivosMD
-				.filter(matcher::matches)
-				.sorted()
-				.forEach(arquivoMD -> {
+	
+			for (String md : repositorioDeMDs.obtemMDsDosCapitulos()) {
 					CapituloBuilder capituloBuilder = new CapituloBuilder();
 					
 					Parser parser = Parser.builder().build();
 					Node document = null;
 					try {
-						document = parser.parseReader(Files.newBufferedReader(arquivoMD));
+						document = parser.parse(md);
 						document.accept(new AbstractVisitor() {
 							@Override
 							public void visit(Heading heading) {
@@ -62,7 +52,7 @@ public class RenderizadorMDParaHTMLComCommonMark implements RenderizadorMDParaHT
 
 						});
 					} catch (Exception ex) {
-						throw new RuntimeException("Erro ao fazer parse do arquivo " + arquivoMD, ex);
+						throw new RuntimeException("Erro ao fazer parse do markdown ", ex);
 					}
 
 					try {
@@ -76,7 +66,7 @@ public class RenderizadorMDParaHTMLComCommonMark implements RenderizadorMDParaHT
 						// tema.aplica(capitulo);
 						String htmlComTemas = tema.aplica(html);
 						
-						capituloBuilder.comConteudoHTML(html);
+						capituloBuilder.comConteudoHTML(htmlComTemas);
 						
 						Capitulo capitulo = capituloBuilder.constroi();
 						
@@ -84,13 +74,9 @@ public class RenderizadorMDParaHTMLComCommonMark implements RenderizadorMDParaHT
 
 
 					} catch (Exception ex) {
-						throw new RuntimeException("Erro ao renderizar para HTML o arquivo " + arquivoMD, ex);
+						throw new RuntimeException("Erro ao renderizar MD para HTML " , ex);
 					}
-				});
-		} catch (IOException ex) {
-			throw new RuntimeException(
-					"Erro tentando encontrar arquivos .md em " + diretorioDosMD.toAbsolutePath(), ex);
-		}
+			}
 		
 		return capitulos;
 		

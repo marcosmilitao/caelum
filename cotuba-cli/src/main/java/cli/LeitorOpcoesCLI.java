@@ -20,7 +20,7 @@ public class LeitorOpcoesCLI implements ParametrosCotuba {
 	/* (non-Javadoc)
 	 * @see cli.ParametrosCotuba#getDiretorioDosMD()
 	 */
-	@Override
+	
 	public Path getDiretorioDosMD() {
 		return diretorioDosMD;
 	}

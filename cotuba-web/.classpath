@@ -6,6 +6,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -22,9 +27,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/cotuba-core/target/cotuba-core-0.0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/cotuba-epub/target/cotuba-epub-0.0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/home/solid8843/eclipse-workspace/cotuba/cotuba-pdf/target/cotuba-pdf-0.0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/home/solid8843/eclipse-workspace/cotuba/cotuba-core/target/cotuba-core-0.0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
